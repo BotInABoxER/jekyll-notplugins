@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" /> 
+    <meta name="apple-mobile-web-app-title" content="Jekyll notPlugins" />
+    <meta name="application-name" content="Jekyll notPlugins" />
+    <meta name="msapplication-TileColor" content="#dadada" />
+    <meta name="theme-color" content="#dadada" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image:height" content="429" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:width" content="820" />
+    <meta property="og:description" content="" />
+    <meta property="og:title" content="Jekyll notPlugins" />
+    <meta property="og:image" content="" />
+    <title>Responsive Lightbox - Jekyll notPlugins</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/just-the-docs.css" />
+    <link rel="stylesheet" href="https://unpkg.com/plyr@3/dist/plyr.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-gallery/2.33.0/css/blueimp-gallery.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+    
+    <script type="text/javascript">
+    var items = [
+
+    ];
+    </script>
+</head>
+
+<body>
+
+  <div class="page-wrap">
+    <div class="side-bar">
+      <a href="http://localhost:4000" class="site-title fs-6 lh-tight">Jekyll notPlugins</a>
+      <span class="fs-3"><button class="js-main-nav-trigger navigation-list-toggle btn btn-outline" type="button" data-text-toggle="Hide">Menu</button></span>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list">
+    
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="http://localhost:4000/404.html" class="navigation-list-link"></a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/" class="navigation-list-link">Home</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/giphy.html" class="navigation-list-link">Giphy Integration</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a href="http://localhost:4000/plyr.html" class="navigation-list-link">Plyr.js Video Embed</a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a href="http://localhost:4000/gallery.html" class="navigation-list-link active">Responsive Lightbox</a>
+            
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+      </div>
+      <footer role="contentinfo" class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-0">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="page-header">
+        <div class="main-content">
+          
+          
+        </div>
+      </div>
+      <div class="main-content">
+        
+          
+        
+        <div id="main-content" class="page-content" role="main">
+          <h1 id="responsive-fullscreen-lightbox-based-on-photoswipejs">Responsive, fullscreen lightbox based on <a href="https://photoswipe.com">PhotoSwipe.js</a></h1>
+
+<ul>
+  <li>Create image.html in the _includes folder of your site</li>
+  <li>Add the following code to image.html</li>
+</ul>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="na">baseurl</span><span class="w"> </span><span class="p">%}{{</span><span class="nv">site</span><span class="p">.</span><span class="nv">url</span><span class="p">}}</span>/assets/images/<span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">links</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">links</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">height</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">nil</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">height</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">900</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">width</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">nil</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">width</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1200</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">alts</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">nil</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">alts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">width</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">titles</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">num</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">nil</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">num</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">links</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+&lt;p class="center"&gt;&lt;img src="<span class="p">{{</span><span class="w"> </span><span class="nv">baseurl</span><span class="w"> </span><span class="p">}}{{</span><span class="w"> </span><span class="nv">links</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>" width="<span class="p">{{</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">}}</span>" height="<span class="p">{{</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">divided_by</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">}}</span>" onclick="swipeInit()" <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">alts</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">nil</span><span class="w"> </span><span class="p">%}</span>alt="<span class="p">{{</span><span class="w"> </span><span class="nv">alts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>"<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>&gt;&lt;/p&gt;
+&lt;!--- PhotoSwipe Markup --&gt;
+&lt;div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"&gt;&lt;div class="pswp__bg"&gt;&lt;/div&gt;&lt;div class="pswp__scroll-wrap"&gt; &lt;div class="pswp__container"&gt; &lt;div class="pswp__item"&gt;&lt;/div&gt;&lt;div class="pswp__item"&gt;&lt;/div&gt;&lt;div class="pswp__item"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="pswp__ui pswp__ui--hidden"&gt; &lt;div class="pswp__top-bar"&gt; &lt;div class="pswp__counter"&gt;&lt;/div&gt;&lt;button class="pswp__button pswp__button--close" title="Close (Esc)"&gt;&lt;/button&gt; &lt;button class="pswp__button pswp__button--share" title="Share"&gt;&lt;/button&gt; &lt;button class="pswp__button pswp__button--fs" title="Toggle fullscreen"&gt;&lt;/button&gt; &lt;button class="pswp__button pswp__button--zoom" title="Zoom in/out"&gt;&lt;/button&gt; &lt;div class="pswp__preloader"&gt; &lt;div class="pswp__preloader__icn"&gt; &lt;div class="pswp__preloader__cut"&gt; &lt;div class="pswp__preloader__donut"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"&gt; &lt;div class="pswp__share-tooltip"&gt;&lt;/div&gt;&lt;/div&gt;&lt;button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"&gt; &lt;/button&gt; &lt;button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"&gt; &lt;/button&gt; &lt;div class="pswp__caption"&gt; &lt;div class="pswp__caption__center"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>i<span class="w"> </span>in<span class="w"> </span>(<span class="mi">0</span>..num)<span class="w"> </span><span class="p">%}</span>
+    var newItems<span class="p">{{</span><span class="w"> </span><span class="nv">forloop</span><span class="p">.</span><span class="nv">index</span><span class="w"> </span><span class="p">}}</span> = {
+        src: '<span class="p">{{</span><span class="w"> </span><span class="nv">baseurl</span><span class="w"> </span><span class="p">}}{{</span><span class="w"> </span><span class="nv">links</span><span class="p">[</span><span class="nv">i</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>',
+        w: <span class="p">{{</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="p">}}</span>,
+        h: <span class="p">{{</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="p">}}</span>,
+        title: '<span class="p">{{</span><span class="w"> </span><span class="nv">titles</span><span class="p">[</span><span class="nv">i</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>'
+    };
+
+    items.push(newItems<span class="p">{{</span><span class="w"> </span><span class="nv">forloop</span><span class="p">.</span><span class="nv">index</span><span class="w"> </span><span class="p">}}</span>);
+    <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+&lt;/script&gt;
+</code></pre></div></div>
+
+<ul>
+  <li>Add links to PhotoSwipe’s CSS in the <code class="highlighter-rouge">&lt;head&gt;</code> of the _includes/head.html</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Add a <code class="highlighter-rouge">&lt;script&gt;</code> to initialize the <code class="highlighter-rouge">items</code> variable in the <code class="highlighter-rouge">&lt;head&gt;</code> of your _includes/head.html file:</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var items = [
+
+];
+</code></pre></div></div>
+
+<ul>
+  <li>Add <code class="highlighter-rouge">&lt;script&gt;</code>’s before the the <code class="highlighter-rouge">&lt;\body&gt;</code> tag in _layouts/default.html to PhotoSwipe’s JS and add an initialization function</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://localhost:4000/assets/js/init.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="c1">// Initialize PhotoSwipe instances</span>
+<span class="kd">var</span> <span class="nx">openPhotoSwipe</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">pswpElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">'.pswp'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">history</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">focus</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">showAnimationDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">hideAnimationDuration</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">gallery</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PhotoSwipe</span><span class="p">(</span><span class="nx">pswpElement</span><span class="p">,</span> <span class="nx">PhotoSwipeUI_Default</span><span class="p">,</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="nx">gallery</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">swipeInit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">openPhotoSwipe</span><span class="p">()</span>
+<span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Add the following in the page/post where you want to embed an image. The first image in a list will be shown, and clicking on it will bring up a full-page lightbox with controls to see all the pictures, as well as full-screen options and a social media sharing function:</li>
+</ul>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">image</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="na">titles</span><span class="o">=</span><span class="s2">"title1,title2,title3,title4"</span><span class="w"> </span><span class="na">links</span><span class="o">=</span><span class="s2">"link1.jpg,link2.jpg,link3.jpg,link4.jpg"</span><span class="w"> </span><span class="na">alt</span><span class="o">=</span><span class="s2">"alt1"</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+<p>You could edit the code in the images.html to allow you to add images from any URL, but for now it’s loading from <code class="highlighter-rouge">{{ site.url }}/assets/images/link.jpg</code></p>
+
+<p>Right now, the alt-text only works for the first image that’s shown, if you have multiples in one include statement. Also, if you have multiple include statements on one page, they’ll be added into a mega-gallery of sorts that starts at the first image on the page from top to bottom and goes through all the images. At some point I might fix that, but that’s how it is for now.</p>
+
+<h2 id="demo">Demo:</h2>
+
+<p class="center"><img src="http://localhost:4000/assets/images/img1.jpg" width="300" height="225" onclick="swipeInit()" /></p>
+
+<!--- PhotoSwipe Markup -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"><div class="pswp__bg"></div><div class="pswp__scroll-wrap"> <div class="pswp__container"> <div class="pswp__item"></div><div class="pswp__item"></div><div class="pswp__item"></div></div><div class="pswp__ui pswp__ui--hidden"> <div class="pswp__top-bar"> <div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" title="Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button> <div class="pswp__preloader"> <div class="pswp__preloader__icn"> <div class="pswp__preloader__cut"> <div class="pswp__preloader__donut"></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"> <div class="pswp__share-tooltip"></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"> </button> <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"> </button> <div class="pswp__caption"> <div class="pswp__caption__center"></div></div></div></div></div>
+
+<script type="text/javascript">
+    
+    var newItems1 = {
+        src: 'http://localhost:4000/assets/images/img1.jpg',
+        w: 1200,
+        h: 900,
+        title: 'Photo Numbero Uno'
+    };
+
+    items.push(newItems1);
+    
+    var newItems2 = {
+        src: 'http://localhost:4000/assets/images/img2.jpg',
+        w: 1200,
+        h: 900,
+        title: 'The Next Photo'
+    };
+
+    items.push(newItems2);
+    
+</script>
+
+
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script type="text/javascript" src="http://localhost:4000/assets/js/vendor/lunr.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/plyr@3"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-gallery/2.33.0/js/blueimp-gallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://localhost:4000/assets/js/init.js"></script>
+    <script type="text/javascript">
+    // Initialize PhotoSwipe instances
+    var openPhotoSwipe = function() {
+      var pswpElement = document.querySelectorAll('.pswp')[0];
+      var options = {
+        history: false,
+        focus: false,
+        showAnimationDuration: 0,
+        hideAnimationDuration: 0
+    };
+    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+    gallery.init();
+    };
+
+    function swipeInit() {
+      openPhotoSwipe()
+    };
+    </script>
+</body>
+</html>

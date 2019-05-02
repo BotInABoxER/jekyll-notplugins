@@ -1,0 +1,61 @@
+{% if include.thumbnail != nil %}{% capture thumbnail %}{{ include.thumbnail }}{% endcapture %}
+{% else %} {% assign thumbnail = # %} {% endif %}
+
+{% if source == "html5" %}
+
+{% if include.foureighty != nil %}{% capture foureighty %}{{ include.foureighty }}{% endcapture %}
+{% else %} {% assign foureighty = # %} {% endif %}
+
+{% if include.fiveseventysix != nil %}{% capture fiveseventysix %}{{ include.fiveseventysix }}{% endcapture %}
+{% else %} {% assign fiveseventysix = # %} {% endif %}
+
+{% if include.seventwenty != nil %}{% capture seventwenty %}{{ include.seventwenty }}{% endcapture %}
+{% else %} {% assign seventwenty = # %} {% endif %}
+
+{% if include.teneighty != nil %}{% capture teneighty %}{{ include.teneighty }}{% endcapture %}
+{% else %} {% assign teneighty = # %} {% endif %}
+
+{% if include.twentyonesixty != nil %}{% capture twentyonesixty %}{{ include.twentyonesixty }}{% endcapture %}
+{% else %} {% assign twentyonesixty = # %} {% endif %}
+
+{% if include.download != nil %}{% capture download %}{{ include.download }}{% endcapture %}
+{% else %} {% assign download = # %} {% endif %}
+
+{% if include.en_caps != nil %}{% capture encaps %}{{ include.encaps }}{% endcapture %}
+{% else %} {% assign encaps = # %} {% endif %}
+
+{% if include.fr_caps != nil %}{% capture frcaps %}{{ include.frcaps }}{% endcapture %}
+{% else %} {% assign frcaps = # %} {% endif %}
+
+
+<div class="video">
+    <video width="100%" height="100%" class="js-plyr d-block vid-embed" controls crossorigin playsinline poster="{% if poster !=# %}{{ poster }}{% endif %}">
+    {% if foureighty != # %}
+        <source src="{{ foureighty }}" type="video/mp4" size="480"> {% endif %}
+    {% if fiveseventysix != # %}
+        <source src="{{ fiveseventysix | absolute_url }}" type="video/mp4" size="576"> {% endif %}
+    {% if seventwenty != # %}
+        <source src="{{ seventwenty | absolute_url }}" type="video/mp4" size="720"> {% endif %}
+    {% if teneighty != # %}
+        <source src="{{ teneighty | absolute_url }}" type="video/mp4" size="1080"> {% endif %}
+    {% if twentyonesixty != # %}
+        <source src="{{ twentyonesixty | absolute_url }}" type="video/mp4" size="2160"> {% endif %}
+
+    {% if encaps != # %}
+        <track kind="captions" label="English" srclang="en" src="{{ encaps | absolute_url }}" default> {% endif %}
+    {% if frcaps != # %}
+        <track kind="captions" label="Français" srclang="fr" src=" {{ frcaps | absolute_url }}"> {% endif %}
+    {% if download != # %}
+        <a href="{ download | absolute_url }" download>Download</a> {% endif %}
+    </video>
+</div>
+
+{% endif %}
+
+{% if include.source == "youtube" %}
+<div class="vid-embed" data-plyr-provider="youtube" data-plyr-embed-id="{{ include.id }}"></div>
+{% endif %}
+
+{% if include.source == "vimeo" %}
+<div id="vid-embed" data-plyr-provider="vimeo" data-plyr-embed-id="76979871"></div>
+{% endif %}

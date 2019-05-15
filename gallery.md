@@ -52,9 +52,10 @@ var items = [
 - Add ```<script>```'s before the the ```<\body>``` tag in \_layouts/default.html to PhotoSwipe's JS and add an initialization function
 
 ```html
+{% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="{{ "/assets/js/init.js " | absolute_url }}"></script>
+<script type="text/javascript" src="{{ /assets/js/init.js  | absolute_url }}"></script>
 <script>
 // Initialize PhotoSwipe instances
 var openPhotoSwipe = function() {
@@ -73,6 +74,7 @@ function swipeInit() {
   openPhotoSwipe()
 };
 </script>
+{% endraw %}
 ```
 
 - Add the following in the page/post where you want to embed an image. The first image in a list will be shown, and clicking on it will bring up a full-page lightbox with controls to see all the pictures, as well as full-screen options and a social media sharing function:
